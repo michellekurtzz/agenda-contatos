@@ -13,6 +13,11 @@ def add_contact():
     except Exception as error:
         print(error)
         return
+    
+    for contact in contacts_list:
+        if contact["name"] == name:
+            print("Já existe um contato com esse nome")
+            return
 
     contact = {
         "name": name,
@@ -49,9 +54,32 @@ def edit_contact():
 
     for contact in contacts_list:
         if contact["name"] == name:
-            contact["name"] = input("Novo nome: ")
-            contact["phone"] = input("Novo telefone: ")
-            contact["email"] = input("Novo email: ")
+            new_name = input("Novo nome: ")
+            new_phone = input("Novo telefone: ")
+            new_email = input("Novo email: ")
+
+            try:
+                validate_contact_fields(
+                    new_name,
+                    new_phone,
+                    new_email
+                )
+
+            except Exception as error:
+                print(error)
+                return
+            
+            for existing_contact in contacts_list:
+                if (
+                    existing_contact["name"] == new_name
+                    and existing_contact != contact
+                ):
+                    print("Já existe um contato com esse nome")
+                    return
+
+            contact["name"] = new_name
+            contact["phone"] = new_phone
+            contact["email"] = new_email
 
             print("Contato editado com sucesso")
             return
@@ -60,7 +88,7 @@ def edit_contact():
 
 
 def delete_contact():
-    name = input("Qual contato deseja deletar? ")
+    name = input("Qual contato deseja deletar? ").strip()
 
     for contact in contacts_list:
         if contact["name"] == name:
@@ -109,7 +137,11 @@ def list_favorite_contacts():
 
     for contact in contacts_list:
         if contact["favorite"]:
-            print(contact["name"])
+            print(
+                f"Nome: {contact['name']} | "
+                f"Telefone: {contact['phone']} | "
+                f"Email: {contact['email']}"
+            )
             has_favorite = True
 
     if not has_favorite:
