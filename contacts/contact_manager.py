@@ -82,6 +82,23 @@ def favorite_contact():
     print("Contato não encontrado")
 
 
+def unfavorite_contact():
+    name = input("Qual contato deseja remover dos favoritos? ")
+
+    for contact in contacts_list:
+        if contact["name"] == name:
+
+            if not contact["favorite"]:
+                print("Esse contato não está nos favoritos")
+            else:
+                contact["favorite"] = False
+                print("Contato removido dos favoritos com sucesso")
+
+            return
+
+    print("Contato não encontrado")
+
+
 def list_favorite_contacts():
     has_favorite = False
 

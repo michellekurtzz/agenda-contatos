@@ -3,9 +3,10 @@ from contacts.contact_manager import (
     add_contact,
     list_contacts,
     edit_contact,
-    delete_contact,
     favorite_contact,
-    list_favorite_contacts
+    unfavorite_contact,
+    list_favorite_contacts,
+    delete_contact
 )
 
 while True:
@@ -26,12 +27,15 @@ while True:
         favorite_contact()
 
     elif option == "5":
-        list_favorite_contacts()
+        unfavorite_contact()
 
     elif option == "6":
-        delete_contact()
+        list_favorite_contacts()
 
     elif option == "7":
+        delete_contact()
+
+    elif option == "8":
         print("Encerrando...")
         break
 
