@@ -1,3 +1,5 @@
+from validations.validators import validate_contact_fields
+
 contacts_list = []
 
 def add_contact():
@@ -5,8 +7,11 @@ def add_contact():
     phone = input("Digite o telefone: ")
     email = input("Digite o email: ")
 
-    if not name or not phone or not email:
-        print("Todos os campos são obrigatórios")
+    try:
+        validate_contact_fields(name, phone, email)
+
+    except Exception as error:
+        print(error)
         return
 
     contact = {
