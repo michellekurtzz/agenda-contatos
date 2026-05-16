@@ -1,5 +1,5 @@
 def show_menu():
-    print("1 - Adicionar contato")
+    print("\n1 - Adicionar contato")
     print("2 - Ver contatos")
     print("3 - Editar contato")
     print("4 - Favoritar contato")
