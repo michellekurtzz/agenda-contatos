@@ -64,3 +64,31 @@ def delete_contact():
             return
 
     print("Contato não encontrado")
+
+
+def favorite_contact():
+    name = input("Qual contato deseja favoritar? ")
+
+    for contact in contacts_list:
+        if contact["name"] == name:
+
+            if contact["favorite"]:
+                print("Esse contato já está favoritado")
+            else:
+                contact["favorite"] = True
+                print("Contato favoritado com sucesso")
+            return
+
+    print("Contato não encontrado")
+
+
+def list_favorite_contacts():
+    has_favorite = False
+
+    for contact in contacts_list:
+        if contact["favorite"]:
+            print(contact["name"])
+            has_favorite = True
+
+    if not has_favorite:
+        print("Nenhum contato favorito")
